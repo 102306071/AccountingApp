@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
 	belongs_to :user
 
-	Account.limit(5)
+	
 
 	def self.dashboard(current_user)
 	    data = Account.select("title, sum(expense) as total").where({ user: current_user }).group("title")
