@@ -1,0 +1,16 @@
+<h2>Edit Account</h2>
+
+<%= form_for @account do |f|%>
+
+	<div>
+		Title
+		<%= f.select :title, options_for_select(["Select One", "home", "personal", "car", "shopping", "food"],:disabled => ["Select One"])%>
+	</div>
+
+	<div>
+		Expense
+		<%= f.text_field :expense %>
+	</div>
+
+<%= f.submit%>
+<%end%>

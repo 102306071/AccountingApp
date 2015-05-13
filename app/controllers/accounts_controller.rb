@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
+	 # before_action :set_account, only: [:show, :edit, :update, :destroy]
 	def index
-		@accounts=Account.all		
+		@accounts=Account.where(user: current_user).last(5)
 	end
 
 	def new
@@ -9,6 +10,7 @@ class AccountsController < ApplicationController
 	
 	def create
 		@account = Account.new(account_params)
+		@account.user = current_user
 		if @account.save
 			redirect_to root_path
 		else
@@ -36,10 +38,13 @@ class AccountsController < ApplicationController
 	end
 
 	def dashboard
-		@data= Account.dashboard
+		@data = Account.dashboard(current_user)
 	end
 
 	private
+	def set_account
+	      @account = Account.find(params[:id])
+	end
 	def account_params
 		params.require(:account).permit(:title ,:expense, :datetime)
 		
