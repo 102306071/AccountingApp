@@ -1,7 +1,6 @@
 <h2>Accounting app</h2>
 	<% if user_signed_in? %>
-	<%=current_user.username%>你好
-	<%= link_to "new your Account", new_account_path() %>
+	歡迎使用記帳系統
 	<% else %>
 	按下<%= link_to "登入", new_user_session_path %>以新增費用
 	<% end %>
